@@ -23,7 +23,6 @@
     <input type="hidden" name="nama_user" value="<?=$nama1?>">
     <input type="submit" name="tambah_barang" Value="Tambahkan Ke keranjang">
 </form>
-<?php echo $nama1?>
 <?php
 
     
