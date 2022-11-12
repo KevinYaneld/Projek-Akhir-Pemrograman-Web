@@ -104,7 +104,7 @@ if(!isset($_SESSION['user'])){
                     <?php
                     ?>
                     
-                    <input type="submit" name="tambah_barang" onclick="location.href='keranjang.php?id=<?= $data['id_produk']?>'">
+                    <input type="submit" name="tambah_barang" id="button_keranjang" onclick="location.href='keranjang.php?id=<?= $data['id_produk']?>'">
                     
                     <a href="lihat_data.php?id=<?= $data['id_produk']?>"><button id="lihat_selengkapnya">Lihat Selengkapnya</button></a>
                     </div>
