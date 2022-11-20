@@ -1,4 +1,13 @@
 <?php
+session_start();
+include 'koneksi.php';
+if(!isset($_SESSION['admin'])){
+    header("Location: index.php");
+    exit;
+}
+?>
+
+<?php
     include 'koneksi.php';
     $id = (int) $_GET['id'];
     $sql = "SELECT * FROM produk INNER JOIN barang ON produk.id_produk = barang.id_produk WHERE produk.id_produk='$id'";

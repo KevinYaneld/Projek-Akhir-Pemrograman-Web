@@ -1,3 +1,12 @@
+<?php
+session_start();
+include 'koneksi.php';
+if(!isset($_SESSION['admin'])){
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,31 +20,6 @@
     <link rel="stylesheet" href="tambah.css">
 </head>
 <body>
-    <!-- <div class="bungkus">
-        <header class="header">
-            <div class="konten1">
-                
-                <div class="header2">
-                    <button class="menuhp">Menu</button>
-                    <div class="header1">
-                        <ul class="menu">
-                            <li><a href="admin.php">Home</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="tambah.php">Tambah</a></li>
-                            <li class="login"><a href="logout.php">Logout</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="tambah_data">
-                    <form action="" method="post" enctype="multipart/form-data">
-                        <p id="tambah1">Jenis Produk<input type="text" name="jenis_produk"></p>
-                        <p id="tambah1">Nama Barang<input type="text" name="nama_barang"></p>
-                        <p id="tambah1">Harga Produk <input type="number" name="harga_barang"></p>
-                        <p id="tambah1">Jumlah Barang<input type="number" name="jumlah_barang"></p>
-                        <p id="tambah1">Gambar Barang<input type="file" name="gambar_barang"></p>
-                        <input type="submit" name="tambah_barang" Value="Tambah Barang">
-                    </form>
-                </div> -->
     <div class="center">
         <h1>Tambah Data</h1>
         <form  method="post" action = "" enctype="multipart/form-data">
@@ -80,16 +64,19 @@
                 <?php
                 include 'koneksi.php';
                 if(isset($_POST['tambah_barang'])){
+                    
                     $jenis_produk = $_POST['jenis_produk'];
                     $nama_barang = $_POST['nama_barang'];
                     $harga_barang = $_POST['harga_barang'];
                     $jumlah_barang = $_POST['jumlah_barang'];
                     $deskripsi_barang = $_POST['deskripsi_barang'];
+                    $tanggal = date("d.m.Y");
+                    $unique = rand(0,10000);
 
                     $gambar_barang = $_FILES['gambar_barang']['name'];
                     $x = explode('.', $gambar_barang);
                     $ekstensi = strtolower(end($x));
-                    $gambar_baru = "$nama_barang.$ekstensi";
+                    $gambar_baru = "$nama_barang-$tanggal-$unique.$ekstensi";
 
                     $tmp = $_FILES['gambar_barang']['tmp_name'];
 
@@ -104,8 +91,8 @@
                         $data = mysqli_fetch_array($query);
                         $last_id = $data['last_id'];
 
-                        $sql = "INSERT INTO barang(id_produk,nama_barang,gambar_barang)
-                                VALUES ('$last_id', '$nama_barang', '$gambar_baru')";
+                        $sql = "INSERT INTO barang(id_produk,nama_barang,gambar_barang, date_barang)
+                                VALUES ('$last_id', '$nama_barang', '$gambar_baru', '$tanggal')";
                         $query = mysqli_query($conn, $sql);
                         if ($query){
                             echo"OKEE DEKK";

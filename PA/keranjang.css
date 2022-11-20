@@ -24,6 +24,7 @@ body{
     padding-left: 0;
 }
 .header1 ul{
+    gap: 20px;
     margin-top: 1%;
     list-style: none;
     display: grid;
@@ -32,6 +33,9 @@ body{
 .header1 a{
     text-decoration: none;
     color: var(--secondary-color);
+}
+.header1 ul a:hover{
+    border-bottom: 2px solid;
 }
 .konten2{
     display: grid;
@@ -84,6 +88,7 @@ body{
     margin-left: 5%;
 }
 .barang{
+    margin-left: 10%;
     display: block;
     column-gap: 120px;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -103,7 +108,17 @@ body{
     margin: 0;
     padding: 0;
 }
+@media(max-width: 2000px){
+    .button_side{
+        cursor: pointer;
+        display: none;
+    }
+}
 @media(max-width: 1024px){
+    .button_side{
+        cursor: pointer;
+        display: none;
+    }
     .header1{
         margin-left: 10%;
     }
@@ -125,6 +140,18 @@ body{
     
 }
 @media(max-width: 768px){
+    .barang div{
+        background-color: var(--fourth-color);
+        padding: 10px;
+        border-radius: 12px;
+        margin: 11px 0px 22px 12px;
+        width: auto;
+        height: 240px;
+    }
+    .button_side{
+        cursor: pointer;
+        display: none;
+    }
     .kata-kata2{
         display: grid;
         width: 590px;
@@ -167,57 +194,63 @@ body{
     width: 90px;
     background-color: var(--primary-color);
 }
-@media(max-width: 500px){
+@media(max-width: 520px){
+    .barang div{
+        background-color: var(--fourth-color);
+        padding: 10px;
+        border-radius: 12px;
+        margin: 11px 0px 22px 12px;
+        width: 480px;
+        height: 190px;
+    }
+    
+    #mySidebar{
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        height:100%;
+        width:26%;
+        display: grid;
+        background-color: #c79334;
+    }
+    .button_side{
+        cursor: pointer;
+        position: fixed;
+        top: 10px;
+        left: 12px;
+        margin-top: 8px;
+        /* margin-left: 10px; */
+        display: block;
+    }
+    .menu_side li{
+        padding: 9px;
+    }
+    .menu_side ul{
+        list-style: none;   
+    }
+    .menu_side a{
+        
+        margin-left: 8px;
+        font-weight: bold;
+        font-size: 20px;
+        text-decoration: none;
+        color: black;
+    }
+    #button_side1{
+        display: block;
+        font-size: 30px;
+        border: none;
+        background-color: transparent;
+        width: 40px;
+        height: 30px;
+    }
     .kata-kata2{
         display: none;
     }
-    .menuhp{
-        display: grid;
-    }
-    .header2:hover .header1 a{
-        display: block;
-    }
     .header1{
-        position: absolute;
-        margin-left: 0;
-        width: 80px;
-        border-radius: 12px;
-        background-color: var(--fifth-color);
-        /* background-color: aqua; */
-    }
-    .header1 a{
-        position: relative;
-        left: 10px;
-        border-radius: 2px;
-        
-        margin-left: 0;
         display: none;
     }
-    .header1 ul{
-        grid-template-columns: 4fr;
-    }
-    .kata-kata{
-        position: absolute;
-        top: 580px;
-        left: 100px;
-    }
 }
-
-/* .header1 a{
-    text-decoration: none;
-}
-.header1{
-    margin-left: 320px;
-} */
-/* .menu ul li{
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
-    margin-top: 21px;
-    padding-left: 50px;
-    
-} */
 .konten1{
     border-radius: 20px;
     margin: 10px auto;
@@ -239,9 +272,13 @@ body{
 #kamu{
     /* background-color: #000000; */
     /* background-color: aliceblue; */
-    width: 22%;
+    width: 180px;
     height: auto;
     
+}
+#kamu img:hover{
+    transform: scale(1.2);
+    transition: .5s;
 }
 #kamu1{
     margin-top: 10px;
@@ -319,4 +356,8 @@ footer {
     position: relative;
     height: 9px;
     width: 90px;
+}
+.button_side{
+    cursor: pointer;
+    display: none;
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Nov 2022 pada 08.18
+-- Waktu pembuatan: 14 Nov 2022 pada 03.32
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -31,15 +31,17 @@ CREATE TABLE `barang` (
   `id_barang` int(70) NOT NULL,
   `id_produk` int(70) NOT NULL,
   `nama_barang` varchar(250) NOT NULL,
-  `gambar_barang` varchar(250) NOT NULL
+  `gambar_barang` varchar(250) NOT NULL,
+  `date_barang` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `barang`
 --
 
-INSERT INTO `barang` (`id_barang`, `id_produk`, `nama_barang`, `gambar_barang`) VALUES
-(19, 19, 'Meja Bundar', 'Meja Bundar.png');
+INSERT INTO `barang` (`id_barang`, `id_produk`, `nama_barang`, `gambar_barang`, `date_barang`) VALUES
+(30, 27, 'ss', 'ss-14.11.2022-1893.png', '14.11.2022'),
+(31, 28, 'f', 'f-14.11.2022-3296.jpeg', '14.11.2022');
 
 -- --------------------------------------------------------
 
@@ -60,14 +62,13 @@ CREATE TABLE `keranjang` (
 --
 
 INSERT INTO `keranjang` (`id_keranjang`, `nama_barang`, `harga_barang`, `gambar_barang`, `nama_user`) VALUES
-(3, 'sofa bagus', 120000, 'sofa bagus.png', ''),
-(4, 'sofa bagus', 120000, 'sofa bagus.png', ''),
-(5, 'Kursi Kuning', 12000, 'Kursi Kuning.png', ''),
-(6, 'sofa bagus', 120000, 'sofa bagus.png', ''),
-(7, 'Meja Bundar', 1, 'Meja Bundar.png', '<?$nama1?>'),
-(8, 'Meja Bundar', 1, 'Meja Bundar.png', 'Hafiz'),
-(9, 'Meja Bundar', 1, 'Meja Bundar.png', 'Hafiz'),
-(10, 'sofa bagus', 120000, 'sofa bagus.png', 'user');
+(17, 's', 0, 's.png', 'user'),
+(18, 'Kursi Lebar', 320000, 'Kursi Lebar-13.11.2022-4642.png', 'user'),
+(19, 'ak', 0, 'ak.png', '<br />\r\n<b>Notice</b>:  Undefined variable: nama1 in <b>E:AplikasiXAMPPhtdocsPAlihat_data.php</b> on line <b>112</b><br '),
+(20, 'e', 0, 'e.png', '<br />\r\n<b>Notice</b>:  Undefined variable: nama1 in <b>E:AplikasiXAMPPhtdocsPAlihat_data.php</b> on line <b>112</b><br '),
+(21, 'e', 0, 'e.png', 'user'),
+(22, 'ak', 0, 'ak.png', 'user'),
+(23, '', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -120,33 +121,24 @@ CREATE TABLE `produk` (
   `id_produk` int(70) NOT NULL,
   `jenis_produk` varchar(150) NOT NULL,
   `harga_produk` int(70) NOT NULL,
-  `jumlah_produk` int(70) NOT NULL
+  `jumlah_produk` int(70) NOT NULL,
+  `deskripsi_produk` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `produk`
 --
 
-INSERT INTO `produk` (`id_produk`, `jenis_produk`, `harga_produk`, `jumlah_produk`) VALUES
-(1, 'Meja Bundar', 140000, 12),
-(2, 'Meja Bundar', 124000, 23),
-(3, 'Lemari', 120000, 12),
-(4, 'Kursi', 240000, 2),
-(5, 'Lemari', 445000, 4),
-(6, 'Kursi', 95000, 3),
-(7, 'Sofa', 420000, 2),
-(8, 'sofa', 450000, 16),
-(9, 'sofa', 320000, 4),
-(10, 'Kursi', 340000, 4),
-(11, 'Kursi', 243000, 4),
-(12, 'Meja Bundar', 2, 2),
-(13, 'Meja Bundar', 1, 1),
-(14, 'sofa', 120000, 2),
-(15, 'Kursi', 12000, 3000),
-(16, '', 0, 0),
-(17, '', 0, 0),
-(18, '', 0, 0),
-(19, '', 0, 0);
+INSERT INTO `produk` (`id_produk`, `jenis_produk`, `harga_produk`, `jumlah_produk`, `deskripsi_produk`) VALUES
+(20, '', 120000, 0, 'ssssss'),
+(21, '', 0, 0, ''),
+(22, '', 0, 0, 'aku bukan'),
+(23, 'Kursi', 320000, 21, 'Kursi lipat ini bagus dan bisa di lipat'),
+(24, 'Meja Bundar', 12000, 0, ''),
+(25, '', 0, 0, ''),
+(26, '', 0, 0, ''),
+(27, '', 0, 0, ''),
+(28, '', 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -181,7 +173,10 @@ INSERT INTO `review_barang` (`id_review`, `nama_review`, `komentar_review`, `id_
 (13, 'Hafiz', 'ha', 11),
 (14, 'ss', 's', 11),
 (15, 'Muh. Hafiz', 'Bagus', 13),
-(16, 'Hafiz', 'Bagus', 13);
+(16, 'Hafiz', 'Bagus', 13),
+(17, 'Hafiz', 'Bagusa', 21),
+(18, 'Hafiz', 'Bagus', 21),
+(19, '', '', 22);
 
 --
 -- Indexes for dumped tables
@@ -232,13 +227,13 @@ ALTER TABLE `review_barang`
 -- AUTO_INCREMENT untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(70) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_barang` int(70) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT untuk tabel `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT untuk tabel `loginn`
@@ -256,13 +251,13 @@ ALTER TABLE `login_admin`
 -- AUTO_INCREMENT untuk tabel `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(70) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_produk` int(70) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT untuk tabel `review_barang`
 --
 ALTER TABLE `review_barang`
-  MODIFY `id_review` int(70) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_review` int(70) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

@@ -1,12 +1,18 @@
+<?php
+session_start();
+include 'koneksi.php';
+if(!isset($_SESSION['user'])){
+    header("Location: login.php");
+    exit;
+}
+?>
 <style>
     body{
         background-color: #FECD70;
     }
 </style>
 <?php
-    session_start();
-    include 'koneksi.php';
-        
+    include 'koneksi.php';   
     $nama1 = $_SESSION['user']['username'];
     $id = (int) $_GET['id'];
     $sql = "SELECT * FROM produk INNER JOIN barang ON produk.id_produk = barang.id_produk WHERE produk.id_produk='$id'";
@@ -15,14 +21,15 @@
 
 
 ?>
-<form action="" method="post">
+<form action="" method="post" id="myform">
     <input type="hidden" name="id" value="<?= $data['id_produk']?>">
     <input type="hidden" name="gambar_barang" value="<?= $data['gambar_barang']?>">
     <input type="hidden" name="nama_barang" value="<?= $data['nama_barang']?>">
     <input type="hidden" name="harga_produk" value="<?= $data['harga_produk']?>">
     <input type="hidden" name="nama_user" value="<?=$nama1?>">
-    <input type="submit" name="tambah_barang" Value="Tambahkan Ke keranjang">
+    
 </form>
+
 <?php
 
     
@@ -54,3 +61,7 @@
         }
     }
 ?>
+
+<script type="text/javascript">
+  document.getElementById("myform").submit();
+</script>
